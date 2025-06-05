@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hole</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+        body {
+            background: #000;
+            color: #39ff14;
+            font-family: 'Silkscreen', monospace;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: blink 1s steps(1, end) infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        #terminal {
+            max-width: 700px;
+            margin: 40px auto;
+            font-size: 1.1em;
+            background: #111;
+            border: 2px solid #0f0;
+            padding: 20px;
+            text-align: left;
+            white-space: pre-wrap;
+            min-height: 160px;
+        }
+
+        .ascii {
+            margin: 40px auto;
+            white-space: pre-wrap;
+            font-size: 0.8em;
+            color: #ff0055;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: #111;
+            padding: 20px;
+            border: 3px dashed #f0f;
+            transform: rotate(-1deg);
+        }
+
+        .button {
+            background: #f00;
+            color: #000;
+            border: 3px double #fff;
+            padding: 10px 20px;
+            font-family: 'Silkscreen', monospace;
+            cursor: pointer;
+            margin-top: 50px;
+        }
+
+        .survey {
+            font-size: 0.9em;
+            margin-top: 60px;
+            color: #ffcc00;
+        }
+
+        .survey label {
+            display: block;
+            margin: 15px 0;
+        }
+
+        footer {
+            margin-top: 100px;
+            font-size: 0.7em;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>☠️ WELCOME TO THE HOLE ☠️</h1>
+
+    <div id="terminal">Initializing tape system...</div>
+
+    <div class="ascii" id="cowboyBlock" style="display:none;">
+          __
+        /    \
+       | ^  ^ |        _____
+       |  ∆   |       /     \\
+       \ --|--/      |  RIP  |  <-- Grave of his horse or lost tapes
+      /|  ||| |\     |_______|
+     /_|__|||_|_\      || ||
+       |  |||  |       || ||
+      (___|||___)     (__) (__)
+       /  | |  \
+     _/   |_|   \_
+    /_____|_|_____\
+     |    |_|    |
+     |____|_|____|
+      |   |_|   |
+     (____/ \____)
+
+     The Crying Cowboy™
+     He saw the last reel of the West.
+     He wept, and he wandered.
+    </div>
+
+    <div class="survey">
+        <p>Are you real?</p>
+        <label><input type="checkbox"> Yes</label>
+        <label><input type="checkbox"> No</label>
+        <label><input type="checkbox"> I contain multitudes</label>
+    </div>
+
+    <button class="button" onclick="location.reload()">DO NOT CLICK</button>
+
+    <footer>
+        <!-- Everything below this line was a mistake -->
+        <br><br>
+        Echoes detected. Source unknown. Tape anomaly expanding.
+    </footer>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+        const cowboy = document.getElementById('cowboyBlock');
+
+        const bootSequence = [
+            "[BOOT] Tape Head Alignment......OK",
+            "[BOOT] Zappa Consciousness Loader v7.4......OK",
+            "[BOOT] Rewind System Engaged......OK",
+            "[ERROR] Cow Memory Corruption Detected",
+            "[FIXED] Crying Cowboy Restoration Module Initialized",
+            "[OK] Terminal Voice: 'ALL TAPES MELT EVENTUALLY'",
+            "",
+        ];
+
+        const warnings = [
+            "ALL TAPES MELT EVENTUALLY",
+            "SIDE B IS NEVER BLANK",
+            "BE KIND, REWIND YOURSELF",
+            "REALITY IS A BOOTLEG",
+            "EJECT BEFORE YOU FORGET",
+            "THE COWBOY IS NOT DONE CRYING"
+        ];
+
+        let bootIndex = 0;
+        let warnIndex = 0;
+        let charIndex = 0;
+        let message = warnings[0];
+        let isBooting = true;
+
+        function typeBoot() {
+            if (bootIndex < bootSequence.length) {
+                terminal.textContent += bootSequence[bootIndex] + "\n";
+                bootIndex++;
+                setTimeout(typeBoot, 1000);
+            } else {
+                isBooting = false;
+                message = warnings[warnIndex];
+                setTimeout(typeLine, 1000);
+            }
+        }
+
+        function typeLine() {
+            if (charIndex < message.length) {
+                terminal.textContent += message.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeLine, 60);
+            } else {
+                setTimeout(eraseLine, 2000);
+            }
+        }
+
+        function eraseLine() {
+            if (charIndex > 0) {
+                terminal.textContent = terminal.textContent.slice(0, -1);
+                charIndex--;
+                setTimeout(eraseLine, 20);
+            } else {
+                warnIndex = (warnIndex + 1) % warnings.length;
+                message = warnings[warnIndex];
+                setTimeout(typeLine, 800);
+            }
+        }
+
+        setTimeout(() => {
+            terminal.textContent = "";
+            typeBoot();
+        }, 1000);
+
+        // Reveal Crying Cowboy after boot finishes
+        setTimeout(() => {
+            cowboy.style.display = "block";
+        }, 8000);
+    </script>
+
+</body>
+</html>

@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+@keyframes hardcoreGlitch {
+  0%   { transform: translate(0, 0) scale(1); text-shadow: 2px 0 red, -2px 0 blue; }
+  20%  { transform: translate(-3px, 2px) scale(1.05); text-shadow: -2px 0 magenta, 2px 0 cyan; }
+  40%  { transform: translate(3px, -2px) scale(0.98); text-shadow: 2px 2px yellow, -2px -2px red; }
+  60%  { transform: translate(-1px, 1px) scale(1.02); text-shadow: -2px 2px cyan, 2px -2px pink; }
+  80%  { transform: translate(1px, -1px) scale(1.01); text-shadow: 1px 0 red, -1px 0 blue; }
+  100% { transform: translate(0, 0) scale(1); text-shadow: 0 0 red, 0 0 blue; }
+}
+.glitch-leak {
+  display: inline-block;
+  animation: hardcoreGlitch 0.3s infinite;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ff00ff;
+  text-decoration: none;
+  border: 1px dashed #ff00ff;
+  padding: 8px 16px;
+  margin-top: 60px;
+  text-transform: uppercase;
+}
+.glitch-leak:hover {
+  background-color: #ff00ff;
+  color: black;
+}
+</style>
+
   <title>Marshall Myerson - Filmmaker</title>
   <style>
     body {
@@ -106,8 +134,11 @@
     </div>
   </div>
 
-  <div class="section">
-    <p><em>Note: If the punctuation looks wonky, it's because I suck at coding. But the message is still real.</em></p>
-  </div>
+  
+
+  <div class="section" style="text-align: center; margin-top: 100px;">
+  <a href="the-hole.html" class="glitch-leak">REALITY HAS... LEAKED</a>
+</div>
+
 </body>
 </html>
