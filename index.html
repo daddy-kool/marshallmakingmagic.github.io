@@ -38,7 +38,28 @@
       0% { transform: scale(1); }
       100% { transform: scale(1.1); }
     }
-    </style>
+    
+#hitButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: black;
+  color: red;
+  border: 2px solid crimson;
+  text-shadow: 0 0 5px red, 0 0 10px orange;
+  box-shadow: 0 0 10px red, 0 0 20px yellow;
+  cursor: pointer;
+  z-index: 999;
+  animation: glowPulse 1.5s infinite alternate;
+}
+@keyframes glowPulse {
+  from { box-shadow: 0 0 5px red, 0 0 10px orange; }
+  to { box-shadow: 0 0 20px red, 0 0 40px yellow; }
+}
+</style>
 <title>Marshall Myerson - Filmmaker</title>
 <style>
     body {
@@ -143,5 +164,14 @@
 <div class="section" style="text-align: center; margin-top: 100px;">
 <a class="glitch-leak" href="the-hole.html">REALITY HAS... LEAKED</a>
 </div>
-</body>
+<audio id="gumSound" src="out_of_gum_x.mp3"></audio><button id="hitButton" onclick="document.getElementById('gumSound').play()">HIT ME</button><script>
+function moveHitButton() {
+  const button = document.getElementById('hitButton');
+  const x = Math.random() * (window.innerWidth - 150);
+  const y = Math.random() * (window.innerHeight - 70);
+  button.style.left = `${x}px`;
+  button.style.top = `${y}px`;
+}
+setInterval(moveHitButton, 7000);
+</script></body>
 </html>
